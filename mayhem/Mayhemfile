@@ -1,0 +1,9 @@
+project: astpretty
+target: fuzz-ast
+testsuite:
+    - file://mayhem/testsuite
+
+cmds:
+  - cmd: /src/mayhem/fuzz_ast.py
+    libfuzzer: true
+    timeout: 12
