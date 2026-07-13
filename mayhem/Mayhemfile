@@ -1,0 +1,14 @@
+# Mayhem target: astpretty — pretty-printer for Python stdlib ast.parse output
+# (Atheris/libFuzzer harness). The cmd binary is the compiled ELF launcher that drives
+# mayhem/fuzz_ast.py; Atheris instruments the astpretty module so the run records coverage (edges).
+project: astpretty
+target: fuzz-ast
+
+cmds:
+  - cmd: /mayhem/astpretty_fuzzer
+    libfuzzer: true
+
+# Seed corpus (Python source snippets to parse+pretty-print).
+testsuite:
+  - https://$MAYHEM_DOMAIN/$MAYHEM_PROJECT/$MAYHEM_TARGET/testsuite.tar
+  - file://mayhem/fuzz-ast/testsuite
